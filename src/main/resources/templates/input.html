@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+	<title>バリデーションサンプルページ</title>
+</head>
+<body>
+	<h1>バリデーションサンプルページ</h1>
+	<form th:action="@{/submit}" th:object="${inputForm}" method="post">
+		<table>
+			<tr>
+				<th>名前</th>
+				<td>
+					<input type="text" th:field="*{name}" th:errorclass="fieldError" /></td>
+				<td th:if="${#fields.hasErrors('*')}">
+					<span class="ng" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+					<span class="ok" th:if="${!#fields.hasErrors('name')}" th:text="OK"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>性別</th>
+				<td>
+					男<input type="radio" value="男" checked="checked" th:field="*{gender}" th:errorclass="fieldError" />
+					女<input type="radio" value="女" th:field="*{gender}" th:errorclass="fieldError" />
+				</td>
+				<td th:if="${#fields.hasErrors('*')}">
+					<span class="ng" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+					<span class="ok" th:if="${!#fields.hasErrors('gender')}" th:text="OK"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>ログインID</th>
+				<td>
+					<input type="text" th:field="*{loginId}" th:errorclass="fieldError" />
+				</td>
+				<td th:if="${#fields.hasErrors('*')}">
+					<span class="ng" th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}"></span>
+					<span class="ok" th:if="${!#fields.hasErrors('loginId')}" th:text="OK"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td>
+					<input type="password" th:field="*{password}" th:errorclass="fieldError" />
+				</td>
+				<td th:if="${#fields.hasErrors('*')}">
+					<span class="ng" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+					<span class="ok" th:if="${!#fields.hasErrors('password')}" th:text="OK"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td>
+					<input type="text" th:field="*{email}" th:errorclass="fieldError" />
+				</td>
+				<td th:if="${#fields.hasErrors('*')}">
+					<span class="ng" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+					<span class="ok" th:if="${!#fields.hasErrors('email')}" th:text="OK"></span>
+				</td>
+			</tr>
+		</table>
+		<input class="submit" type="submit" value="登録する" />
+	</form>
+</body>
+</html>
